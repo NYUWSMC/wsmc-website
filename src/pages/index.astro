@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+import { getCollection, getEntry, render } from 'astro:content';
+
+const home = await getEntry('pages', 'home');
+if (!home) throw new Error('Missing pages/home content');
+const { Content } = await render(home);
+
+const clients = (await getCollection('clients')).sort((a, b) =>
+  a.data.name.localeCompare(b.data.name),
+);
+const services = (await getCollection('services')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const cases = await getCollection('cases');
+const team = (await getCollection('team'))
+  .filter((m) => m.data.published)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={home.data.description} />
+    <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg" />
+    <title>{home.data.title} · WSMC</title>
+  </head>
+  <body>
+    <main style="max-width: var(--width); margin: 0 auto; padding: var(--space-7) var(--gutter);">
+      <p class="mono" style="color: var(--brand); font-size: var(--text-sm); letter-spacing: 0.06em; text-transform: uppercase;">
+        Scaffold · content collections live
+      </p>
+      <h1 style="font-size: var(--text-2xl); max-width: 18ch;">{home.data.headline}</h1>
+      <p style="max-width: var(--measure); color: var(--ink-muted);">{home.data.lede}</p>
+      <div style="margin-block: var(--space-5); color: var(--ink-muted); max-width: var(--measure);">
+        <Content />
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid var(--line); margin: var(--space-7) 0;" />
+
+      <h2 style="font-size: var(--text-xl);">Collections loaded</h2>
+      <ul style="font-family: var(--font-mono); font-size: var(--text-sm); line-height: 1.8;">
+        <li>clients · {clients.length}</li>
+        <li>services · {services.length}</li>
+        <li>cases · {cases.length}</li>
+        <li>team · {team.length}</li>
+      </ul>
+
+      <h3 style="font-size: var(--text-lg); margin-top: var(--space-6);">Services (order)</h3>
+      <ol>
+        {services.map((s) => <li><strong>{s.data.title}</strong> — {s.data.summary}</li>)}
+      </ol>
+
+      <h3 style="font-size: var(--text-lg); margin-top: var(--space-6);">Clients</h3>
+      <ul>
+        {clients.map((c) => (
+          <li>
+            {c.data.name}
+            {c.data.featured && <span class="pending" style="margin-left: 0.5rem;">featured</span>}
+          </li>
+        ))}
+      </ul>
+
+      <h3 style="font-size: var(--text-lg); margin-top: var(--space-6);">Flagship case</h3>
+      {cases.map((c) => (
+        <div>
+          <p><strong>{c.data.title}</strong></p>
+          <p style="color: var(--ink-muted);">{c.data.summary}</p>
+          {!c.data.outcome && <p><span class="pending">Outcome pending</span></p>}
+          <p class="mono" style="font-size: var(--text-sm);">Methods: {c.data.methods.length}</p>
+        </div>
+      ))}
+    </main>
+  </body>
+</html>

@@ -1,7 +1,15 @@
+# build
 node_modules/
 dist/
 .astro/
+
+# local / temp
 brand-temp/
-public/brand/_preview*.html
 .DS_Store
 *.svg.png
+public/brand/_preview*.html
+
+# env
+.env
+.env.*
+!.env.example
