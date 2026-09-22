@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+brand-temp/
+public/brand/_preview*.html
+.DS_Store
+*.svg.png
