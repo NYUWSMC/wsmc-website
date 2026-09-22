@@ -1,0 +1,20 @@
+---
+interface Props {
+  methods: string[];
+}
+
+const { methods } = Astro.props;
+---
+
+<ul class="method-list">
+  {
+    methods.map((method) => (
+      <li>
+        <span class="tick" aria-hidden="true">
+          —
+        </span>
+        <span>{method}</span>
+      </li>
+    ))
+  }
+</ul>

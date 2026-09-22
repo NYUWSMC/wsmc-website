@@ -100,6 +100,7 @@ const pages = defineCollection({
     eyebrow: z.string().optional(),
     headline: z.string().optional(),
     lede: z.string().optional(),
+    ledeAttribution: z.string().optional(),
     primaryCta: z
       .object({
         label: z.string(),
@@ -110,6 +111,27 @@ const pages = defineCollection({
       .object({
         label: z.string(),
         href: z.string(),
+      })
+      .optional(),
+    audiences: z
+      .array(
+        z.object({
+          title: z.string(),
+          summary: z.string(),
+          href: z.string(),
+          cta: z.string(),
+        }),
+      )
+      .optional(),
+    formEndpoint: z
+      .string()
+      .url()
+      .optional()
+      .describe('Optional Formspree or Worker endpoint for the contact form'),
+    quote: z
+      .object({
+        text: z.string(),
+        attribution: z.string(),
       })
       .optional(),
   }),

@@ -1,0 +1,45 @@
+---
+import Logo from './Logo.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div class="stack" style="--stack-gap: 1rem;">
+        <a class="logo-link" href="/" aria-label="WSMC home" style="color: var(--brand); width: max-content;">
+          <Logo variant="abbreviated" />
+        </a>
+        <p style="color: var(--ink-muted); font-size: var(--text-sm); max-width: 28rem;">
+          Graduate consulting practice of NYU’s Industrial-Organizational Psychology program.
+          Selection, assessment, surveys, L&D measurement, workforce transformation, and related
+          talent work — delivered with methodological rigor.
+        </p>
+      </div>
+
+      <div>
+        <h2>Practice</h2>
+        <ul>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/work/">Our Work</a></li>
+          <li><a href="/team/">Team</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Connect</h2>
+        <ul>
+          <li><a href="/join/">Join Us</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="mailto:io.wsmc@nyu.edu">io.wsmc@nyu.edu</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="site-footer__meta">
+      © {year} Washington Square Management Consulting · Fees paid as a gift to NYU’s Department of
+      Psychology
+    </p>
+  </div>
+</footer>

@@ -3,9 +3,6 @@ title: Join Us
 description: First-year NYU I-O students — how to join Washington Square Management Consulting.
 headline: Join the practice
 lede: Recruitment opens each autumn. Expect up to eight hours per week, and live client work from the first semester.
-primaryCta:
-  label: How to apply
-  href: /contact/
 ---
 
 ## Time commitment

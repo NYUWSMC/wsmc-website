@@ -1,0 +1,104 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  ledeAttribution?: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  /** Plain text shown under the CTA cluster (e.g. email address) */
+  primaryCtaNote?: string;
+}
+
+const { eyebrow, title, lede, ledeAttribution, primaryCta, secondaryCta, primaryCtaNote } =
+  Astro.props;
+
+const noteHref =
+  primaryCtaNote && primaryCta?.href?.startsWith('mailto:')
+    ? primaryCta.href
+    : primaryCtaNote
+      ? `mailto:${primaryCtaNote}`
+      : undefined;
+---
+
+<header class="page-hero wrap reveal">
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h1 style={eyebrow ? 'margin-top: var(--space-3);' : undefined}>{title}</h1>
+  {
+    lede && (
+      ledeAttribution ? (
+        <blockquote class="hero-quote">
+          <p class="lede">“{lede}”</p>
+          <footer class="hero-quote__attr">— {ledeAttribution}</footer>
+        </blockquote>
+      ) : (
+        <p class="lede">{lede}</p>
+      )
+    )
+  }
+  {
+    (primaryCta || secondaryCta) && (
+      <div class="cluster">
+        {primaryCta && (
+          <a class="btn btn-primary" href={primaryCta.href}>
+            {primaryCta.label}
+          </a>
+        )}
+        {secondaryCta && (
+          <a class="btn btn-ghost" href={secondaryCta.href}>
+            {secondaryCta.label}
+          </a>
+        )}
+      </div>
+    )
+  }
+  {
+    primaryCtaNote && (
+      <p class="cta-note">
+        {noteHref ? <a href={noteHref}>{primaryCtaNote}</a> : primaryCtaNote}
+      </p>
+    )
+  }
+</header>
+
+<style>
+  .hero-quote {
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    border: 0;
+    max-width: var(--measure);
+  }
+
+  .hero-quote .lede {
+    margin-top: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  .hero-quote__attr {
+    display: block;
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+
+  .cta-note {
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.02em;
+  }
+
+  .cta-note a {
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+
+  .cta-note a:hover {
+    color: var(--brand);
+  }
+</style>

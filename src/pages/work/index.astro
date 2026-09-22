@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'work');
+if (!page) throw new Error('Missing pages/work');
+
+const clients = (await getCollection('clients')).sort((a, b) =>
+  b.data.year.localeCompare(a.data.year),
+);
+const cases = await getCollection('cases');
+const caseByClient = new Map(cases.map((c) => [c.data.client.id, c]));
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+  <header class="page-hero wrap reveal">
+    <h1>{page.data.headline ?? page.data.title}</h1>
+    <div class="work-quote">
+      <p class="lede">
+        “The WSMC team provided key external perspectives and research-based insights to support
+        how our organization thinks about the future of work.”
+      </p>
+      <p class="work-quote__attr">— VP, PepsiCo</p>
+    </div>
+    {
+      page.data.primaryCta && (
+        <div class="cluster">
+          <a class="btn btn-primary" href={page.data.primaryCta.href}>
+            {page.data.primaryCta.label}
+          </a>
+        </div>
+      )
+    }
+  </header>
+
+  <section class="section" aria-labelledby="clients-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="clients-heading">Client Index</h2>
+      </div>
+
+      <ul class="client-index">
+        {
+          clients.map((client) => {
+            const linkedCase = caseByClient.get(client.id);
+            const meta = client.data.year;
+            if (linkedCase) {
+              return (
+                <li>
+                  <a href={`/work/${linkedCase.id}/`}>
+                    <span class="client-name">{client.data.name}</span>
+                    <span class="client-meta">{meta}</span>
+                    <span class="client-summary">{client.data.summary}</span>
+                  </a>
+                </li>
+              );
+            }
+            return (
+              <li>
+                <div class="client-row">
+                  <span class="client-name">{client.data.name}</span>
+                  <span class="client-meta">{meta}</span>
+                  <span class="client-summary">{client.data.summary}</span>
+                </div>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

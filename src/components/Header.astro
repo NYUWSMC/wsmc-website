@@ -1,0 +1,75 @@
+---
+import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const links = [
+  { href: '/services/', label: 'Services' },
+  { href: '/work/', label: 'Our Work' },
+  { href: '/team/', label: 'Team' },
+  { href: '/join/', label: 'Join Us' },
+];
+
+function isCurrent(href: string) {
+  const clean = href.replace(/\/$/, '') || '/';
+  if (clean === '/') return pathname === '/';
+  return pathname === clean || pathname.startsWith(`${clean}/`);
+}
+---
+
+<header class="site-header" data-site-header>
+  <div class="wrap site-header__inner">
+    <a class="logo-link" href="/" aria-label="WSMC home">
+      <Logo variant="abbreviated" class="logo-desktop" />
+      <Logo variant="mark" class="logo-mobile-only" />
+    </a>
+
+    <div class="cluster" style="--cluster-gap: 0.75rem;">
+      <ThemeToggle />
+      <button
+        type="button"
+        class="menu-toggle"
+        data-menu-toggle
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        Menu
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        {
+          links.map((link) => (
+            <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+              {link.label}
+            </a>
+          ))
+        }
+        <a
+          class="nav-contact"
+          href="/contact/"
+          aria-current={isCurrent('/contact/') ? 'page' : undefined}
+        >
+          Contact
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .logo-desktop {
+    height: 2.25rem;
+  }
+
+  @media (max-width: 767px) {
+    .logo-desktop {
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .logo-mobile-only {
+      display: none;
+    }
+  }
+</style>

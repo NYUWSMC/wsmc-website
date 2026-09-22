@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'contact');
+if (!page) throw new Error('Missing pages/contact');
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+  <PageHero
+    title={page.data.headline ?? page.data.title}
+    lede={page.data.lede}
+    primaryCta={page.data.primaryCta}
+    primaryCtaNote="io.wsmc@nyu.edu"
+  />
+</BaseLayout>

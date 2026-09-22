@@ -1,0 +1,13 @@
+---
+interface Props {
+  label?: string;
+  note: string;
+}
+
+const { label = 'Pending', note } = Astro.props;
+---
+
+<div class="pending-block" role="status">
+  <span class="pending">{label}</span>
+  <p>{note}</p>
+</div>

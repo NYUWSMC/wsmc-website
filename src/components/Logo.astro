@@ -1,0 +1,25 @@
+---
+import { logos } from '../assets/logos';
+
+interface Props {
+  variant?: 'abbreviated' | 'mark' | 'full';
+  class?: string;
+}
+
+const { variant = 'abbreviated', class: className = '' } = Astro.props;
+const logo = logos[variant];
+const heightClass =
+  variant === 'mark' ? 'logo-svg logo-svg--mark' : variant === 'full' ? 'logo-svg logo-svg--full' : 'logo-svg';
+---
+
+<svg
+  class={`${heightClass} ${className}`.trim()}
+  viewBox={logo.viewBox}
+  fill="none"
+  role="img"
+  aria-label={logo.title}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>{logo.title}</title>
+  <path fill="currentColor" d={logo.d}></path>
+</svg>

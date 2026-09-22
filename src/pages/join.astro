@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { getEntry, render } from 'astro:content';
+
+const page = await getEntry('pages', 'join');
+if (!page) throw new Error('Missing pages/join');
+const { Content } = await render(page);
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+  <PageHero
+    title={page.data.headline ?? page.data.title}
+    lede={page.data.lede}
+  />
+
+  <section class="section-tight wrap" style="padding-top: 0;">
+    <div class="prose">
+      <Content />
+    </div>
+  </section>
+
+  <section class="section section-surface">
+    <div class="wrap" style="display: grid; gap: var(--space-4); max-width: 36rem;">
+      <h2 style="font-size: var(--text-xl);">Questions before you apply</h2>
+      <p class="lede">
+        Reach out to one of the board members, or click below to send us an email.
+      </p>
+      <div>
+        <a class="btn btn-primary" href="/contact/">Contact us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'services');
+if (!page) throw new Error('Missing pages/services');
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+  <PageHero
+    title={page.data.headline ?? page.data.title}
+    lede={page.data.lede}
+  />
+
+  <section class="section-tight wrap" style="padding-top: 0;" aria-label="Practice areas">
+    <ul class="split-list">
+      {
+        services.map((s) => (
+          <li>
+            <div class="stack" style="--stack-gap: 0.5rem;">
+              <h2 style="font-family: var(--font-sans); font-size: var(--text-lg); font-weight: 600;">
+                {s.data.title}
+              </h2>
+            </div>
+            <div class="stack" style="--stack-gap: 0.75rem;">
+              <p style="font-size: var(--text-md); max-width: 36rem;">{s.data.summary}</p>
+              <p style="color: var(--ink-muted); max-width: 36rem;">{s.data.detail}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="section section-surface">
+    <div class="wrap" style="display: grid; gap: var(--space-4); max-width: 36rem;">
+      <h2 style="font-size: var(--text-xl);">Not sure which applies?</h2>
+      <p class="lede">
+        Describe the decision you need to make, the people data you have, and any constraints on
+        timeline or confidentiality. We will map it to a scoped engagement.
+      </p>
+      <div>
+        <a class="btn btn-primary" href="/contact/">Start a conversation</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
