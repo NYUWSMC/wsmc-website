@@ -783,17 +783,14 @@ code,
     grid-template-columns: 1fr;
   }
 
-  .logo-svg--full {
+  /* Header: hide abbreviated lockup; show arch mark only */
+  .logo-desktop {
     display: none;
-  }
-
-  .logo-svg--mark {
-    display: block;
   }
 }
 
 @media (min-width: 768px) {
-  .logo-svg--mark.logo-mobile-only {
+  .logo-mobile-only {
     display: none;
   }
 }
