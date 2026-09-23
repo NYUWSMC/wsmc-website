@@ -7,7 +7,7 @@ lede: Recruitment opens each autumn. Expect up to eight hours per week, and live
 
 ## Time commitment
 
-Up to eight hours per week during the academic year. That includes project delivery, internal training and client meetings. It is real consulting load — plan for it.
+Up to eight hours per week during the academic year. That includes project delivery, internal training and client meetings.
 
 ## Process
 
