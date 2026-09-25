@@ -12,7 +12,16 @@ const members = (await getCollection('team'))
   .filter((m) => m.data.published)
   .sort((a, b) => a.data.order - b.data.order);
 
-const priorOrgs = [...new Set(members.map((m) => m.data.priorOrg))];
+/** Recent cohort employers from the design brief — not tied to individual bios. */
+const recentEmployers = [
+  'ServiceNow',
+  'Microsoft',
+  'Sony Music Group',
+  'Amazon',
+  'iHeartMedia',
+  'Abrams Publishing',
+  'Graham Windham',
+];
 ---
 
 <BaseLayout title={page.data.title} description={page.data.description}>
@@ -55,11 +64,10 @@ const priorOrgs = [...new Set(members.map((m) => m.data.priorOrg))];
   <section class="section" aria-labelledby="team-heading">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Current cohort</p>
-        <h2 id="team-heading">Consultants</h2>
+        <p class="eyebrow">2026–27 board</p>
+        <h2 id="team-heading">Board of directors</h2>
         <p class="lede">
-          Names and headshots are being confirmed. Slots below already reserve space for photos —
-          adding an image later does not change the layout. Prior employers reflect recent cohorts.
+          Student leaders who run client delivery, talent and operations for the practice.
         </p>
       </div>
 
@@ -68,11 +76,9 @@ const priorOrgs = [...new Set(members.map((m) => m.data.priorOrg))];
           members.map((m) => (
             <TeamCard
               name={m.data.name}
+              role={m.data.role}
+              linkedin={m.data.linkedin}
               initials={m.data.initials}
-              priorRole={m.data.priorRole}
-              priorOrg={m.data.priorOrg}
-              classYear={m.data.classYear}
-              projectRole={m.data.projectRole}
               photo={m.data.photo}
             />
           ))
@@ -84,7 +90,7 @@ const priorOrgs = [...new Set(members.map((m) => m.data.priorOrg))];
           Recent cohort employers
         </h3>
         <p style="color: var(--ink-muted); font-size: var(--text-sm);">
-          {priorOrgs.join(' · ')}
+          {recentEmployers.join(' · ')}
         </p>
       </div>
     </div>

@@ -3,44 +3,51 @@ import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 
 interface Props {
-  name?: string;
-  initials: string;
-  priorRole: string;
-  priorOrg: string;
-  classYear: string;
-  projectRole: string;
+  name: string;
+  role: string;
+  linkedin?: string;
+  initials?: string;
   photo?: ImageMetadata;
 }
 
-const { name, initials, priorRole, priorOrg, classYear, projectRole, photo } = Astro.props;
-const displayName = name ?? 'Name pending';
+const { name, role, linkedin, initials, photo } = Astro.props;
+const monogram =
+  initials ??
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .join('');
 ---
 
 <li class="team-card">
   {
     photo ? (
-      <Image class="team-photo" src={photo} alt={`Portrait of ${displayName}`} widths={[320, 480]} sizes="(max-width: 720px) 45vw, 240px" />
+      <Image
+        class="team-photo"
+        src={photo}
+        alt={`Portrait of ${name}`}
+        widths={[320, 480]}
+        sizes="(max-width: 720px) 45vw, 240px"
+      />
     ) : (
       <div class="team-monogram" aria-hidden="true">
-        {initials}
+        {monogram}
       </div>
     )
   }
   <div>
-    <h3>{displayName}</h3>
-    {!name && <p class="role"><span class="pending">Identity pending</span></p>}
-    <p class="role">{projectRole} · {classYear}</p>
-    <p class="prior">
-      <span class="mono" style="font-size: var(--text-xs); color: var(--ink-muted);">Prior · </span>
-      {priorOrg}
-      {
-        priorRole !== 'Prior experience pending confirmation' && (
-          <>
-            <br />
-            <span style="color: var(--ink-muted);">{priorRole}</span>
-          </>
-        )
-      }
-    </p>
+    <h3>{name}</h3>
+    <p class="role">{role}</p>
+    {
+      linkedin && (
+        <p class="team-link">
+          <a href={linkedin} rel="noopener noreferrer" target="_blank">
+            LinkedIn
+          </a>
+        </p>
+      )
+    }
   </div>
 </li>

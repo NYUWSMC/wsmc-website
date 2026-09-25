@@ -603,9 +603,20 @@ code,
   font-size: var(--text-sm);
 }
 
-.team-card .prior {
-  font-size: var(--text-sm);
+.team-card .team-link {
   margin-top: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.team-card .team-link a {
+  color: var(--brand);
+  text-decoration: none;
+  text-underline-offset: 0.22em;
+}
+
+.team-card .team-link a:hover {
+  text-decoration: underline;
+  color: var(--brand-deep);
 }
 
 .method-list {

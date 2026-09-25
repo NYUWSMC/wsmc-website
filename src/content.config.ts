@@ -35,16 +35,14 @@ const team = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/team' }),
   schema: ({ image }) =>
     z.object({
-      // Names are pending for the current cohort — leave blank/null until confirmed.
-      name: z.string().optional(),
+      name: z.string(),
+      role: z.string().describe('Board title, e.g. Co-President'),
+      linkedin: z.string().url().optional(),
       initials: z
         .string()
         .max(3)
-        .describe('Shown when name or photo is missing'),
-      priorRole: z.string(),
-      priorOrg: z.string(),
-      classYear: z.string().describe('e.g. MA 2027'),
-      projectRole: z.string().describe('e.g. Consultant, Project Lead'),
+        .describe('Shown when photo is missing')
+        .optional(),
       photo: image().optional(),
       order: z.number().int().positive().default(99),
       published: z.boolean().default(true),
