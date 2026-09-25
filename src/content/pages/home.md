@@ -1,11 +1,11 @@
 ---
 title: Home
-description: Washington Square Management Consulting — NYU I-O graduate consulting across selection, assessment, surveys, L&D, workforce transformation and related talent work.
+description: Washington Square Management Consulting — NYU I-O master’s student-led consulting across selection, assessment, surveys, L&D, workforce transformation and related talent work.
 eyebrow: NYU Industrial-Organizational Psychology
 headline: Instruments organizations use to hire, develop and understand their people.
-lede: Washington Square Management Consulting is the graduate consulting practice of NYU’s I-O Psychology program. We take on the full range of industrial-organizational work clients bring us — selection and assessment, competency modelling, surveys and listening systems, L&D measurement, workforce planning and transformation, culture and change, and related talent problems that need the same methodological rigor.
+lede: "Washington Square Management Consulting is the master’s student-led consulting firm of NYU’s I-O Psychology program. Our work spans the full range of industrial-organizational consulting: selection and assessment, surveys and employee listening, competency modeling, learning and development, workforce planning and transformation, culture and change management, and any other talent challenges that require strategy and methodological rigor."
 primaryCta:
-  label: Start a conversation
+  label: Contact us
   href: /contact/
 secondaryCta:
   label: See our work

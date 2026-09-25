@@ -1,6 +1,6 @@
 ---
 title: Workforce planning
-summary: Hiring and succession plans assume a future workforce the organization has not actually modelled.
+summary: Hiring and succession plans assume a future workforce the organization has not actually modeled.
 detail: We translate strategy into role requirements, capacity scenarios and selection criteria that talent teams can act on.
 order: 5
 ---

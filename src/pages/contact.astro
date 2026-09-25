@@ -5,13 +5,36 @@ import { getEntry } from 'astro:content';
 
 const page = await getEntry('pages', 'contact');
 if (!page) throw new Error('Missing pages/contact');
+
+const email = 'io.wsmc@nyu.edu';
 ---
 
 <BaseLayout title={page.data.title} description={page.data.description}>
-  <PageHero
-    title={page.data.headline ?? page.data.title}
-    lede={page.data.lede}
-    primaryCta={page.data.primaryCta}
-    primaryCtaNote="io.wsmc@nyu.edu"
-  />
+  <PageHero title={page.data.headline ?? page.data.title} lede={page.data.lede} />
+
+  <section class="section-tight wrap" style="padding-top: 0;" aria-label="Email">
+    <p class="contact-email">
+      <a href={`mailto:${email}`}>{email}</a>
+    </p>
+  </section>
 </BaseLayout>
+
+<style>
+  .contact-email {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    letter-spacing: 0.02em;
+  }
+
+  .contact-email a {
+    color: var(--brand);
+    text-decoration: none;
+  }
+
+  .contact-email a:hover {
+    color: var(--brand-deep);
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
+  }
+</style>

@@ -1,7 +1,7 @@
 ---
-title: Benchmarking & labour market research
+title: Benchmarking & labor market research
 summary: Compensation, role design or workforce claims are being made without a defensible external reference.
-detail: We gather and structure labour-market and peer evidence so internal decisions sit on something stronger than anecdote.
+detail: We gather and structure labor-market and peer evidence so internal decisions sit on something stronger than anecdote.
 order: 4
 ---
 

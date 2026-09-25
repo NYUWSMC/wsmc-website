@@ -1,9 +1,6 @@
 ---
 title: Contact
-description: Start a conversation with Washington Square Management Consulting.
-headline: Start a conversation
-lede: Tell us what you are trying to hire for, measure or change. We will reply with whether we are the right fit and what a scoped engagement would look like.
-primaryCta:
-  label: Email us
-  href: mailto:io.wsmc@nyu.edu
+description: Contact Washington Square Management Consulting.
+headline: Contact us
+lede: "Tell us about an organizational issue you’d like us to address, or brainstorm with us about areas that could use improvement. We’ll assess whether we’re the right fit and outline what a scoped engagement could look like."
 ---
