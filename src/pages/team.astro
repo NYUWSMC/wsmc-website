@@ -2,25 +2,36 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import TeamCard from '../components/TeamCard.astro';
-import { getCollection, getEntry, render } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 
 const page = await getEntry('pages', 'team');
 if (!page) throw new Error('Missing pages/team');
-const { Content } = await render(page);
 
 const members = (await getCollection('team'))
   .filter((m) => m.data.published)
   .sort((a, b) => a.data.order - b.data.order);
 
-/** Recent cohort employers from the design brief — not tied to individual bios. */
+/**
+ * Recent cohort / alumni employers — aggregate only, not tied to individual bios.
+ * Sources (do not invent additions):
+ * - 25-26 LinkedIn Internship Spotlight form responses
+ * - 26-27 WSMC_Client_History_and_NDA_Audit.docx Tier 2 (alumni employers + internships)
+ * Amazon and iHeartMedia appear in marketing briefs but lack primary archive evidence; omitted.
+ */
 const recentEmployers = [
-  'ServiceNow',
-  'Microsoft',
-  'Sony Music Group',
-  'Amazon',
-  'iHeartMedia',
   'Abrams Publishing',
+  'Deloitte',
   'Graham Windham',
+  'Korn Ferry',
+  'Microsoft',
+  'PepsiCo',
+  'ServiceNow',
+  'Sony Music Group',
+  'TikTok',
+  'U.S. Army',
+  'VNS Health',
+  'Walmart',
+  'Willis Towers Watson',
 ];
 ---
 
@@ -29,12 +40,6 @@ const recentEmployers = [
     title={page.data.headline ?? page.data.title}
     lede={page.data.lede}
   />
-
-  <section class="section-tight wrap" style="padding-top: 0;">
-    <div class="prose">
-      <Content />
-    </div>
-  </section>
 
   <section class="section section-surface" aria-labelledby="oversight-heading">
     <div class="wrap" style="display: grid; gap: var(--space-5); max-width: 42rem;">
