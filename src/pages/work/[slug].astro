@@ -40,7 +40,7 @@ const { Content } = await render(entry);
         <section class="wrap section-tight" style="padding-top: 0;" aria-label="Engagement scale">
           <dl class="figure-grid">
             {entry.data.figures.map((fig) => (
-              <div class="figure">
+              <div class="figure" data-reveal>
                 <dt>{fig.label}</dt>
                 <dd>{fig.value}</dd>
               </div>
@@ -52,7 +52,7 @@ const { Content } = await render(entry);
 
     <section class="section section-surface" aria-labelledby="method-heading">
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head" data-reveal>
           <p class="eyebrow">Methodology</p>
           <h2 id="method-heading">The technical substance is the work</h2>
           <p class="lede">
@@ -68,13 +68,13 @@ const { Content } = await render(entry);
       entry.data.phases.length > 0 && (
         <section class="section" aria-labelledby="phases-heading">
           <div class="wrap">
-            <div class="section-head">
+            <div class="section-head" data-reveal>
               <p class="eyebrow">Delivery</p>
               <h2 id="phases-heading">Phases</h2>
             </div>
             <ol class="phase-list">
               {entry.data.phases.map((phase, i) => (
-                <li>
+                <li data-reveal>
                   <h3>
                     <span class="mono" style="color: var(--ink-muted); font-size: var(--text-xs); margin-right: 0.5rem;">
                       {String(i + 1).padStart(2, '0')}
@@ -92,11 +92,11 @@ const { Content } = await render(entry);
 
     <section class="section section-surface" aria-labelledby="narrative-heading">
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head" data-reveal>
           <p class="eyebrow">Context</p>
           <h2 id="narrative-heading">What we were asked to do</h2>
         </div>
-        <div class="prose">
+        <div class="prose" data-reveal-group>
           <Content />
         </div>
       </div>
@@ -104,31 +104,35 @@ const { Content } = await render(entry);
 
     <section class="section" aria-labelledby="outcome-heading">
       <div class="wrap" style="display: grid; gap: var(--space-5); max-width: 40rem;">
-        <div class="section-head" style="margin-bottom: 0;">
+        <div class="section-head" style="margin-bottom: 0;" data-reveal>
           <p class="eyebrow">Results</p>
           <h2 id="outcome-heading">Outcome</h2>
         </div>
         {
           entry.data.outcome ? (
-            <p style="font-size: var(--text-md);">{entry.data.outcome}</p>
+            <p style="font-size: var(--text-md);" data-reveal>{entry.data.outcome}</p>
           ) : (
-            <PendingBlock
-              label="Outcome pending"
-              note="We currently hold no client outcome data for this engagement. When a verified result or attributed quote is available, it will appear here — we will not invent one."
-            />
+            <div data-reveal>
+              <PendingBlock
+                label="Outcome pending"
+                note="We currently hold no client outcome data for this engagement. When a verified result or attributed quote is available, it will appear here — we will not invent one."
+              />
+            </div>
           )
         }
         {
           entry.data.testimonial?.pending !== false && !entry.data.testimonial?.quote && (
-            <PendingBlock
-              label="Testimonial pending"
-              note="Attributed client quotes are not yet on file for this case."
-            />
+            <div data-reveal>
+              <PendingBlock
+                label="Testimonial pending"
+                note="Attributed client quotes are not yet on file for this case."
+              />
+            </div>
           )
         }
         {
           entry.data.testimonial?.quote && (
-            <blockquote style="margin: 0; padding-left: var(--space-4); border-left: 2px solid var(--brand);">
+            <blockquote data-reveal style="margin: 0; padding-left: var(--space-4); border-left: 2px solid var(--brand);">
               <p style="font-family: var(--font-display); font-size: var(--text-lg);">
                 “{entry.data.testimonial.quote}”
               </p>
@@ -144,7 +148,7 @@ const { Content } = await render(entry);
     </section>
 
     <section class="section section-surface">
-      <div class="wrap cluster">
+      <div class="wrap cluster" data-reveal>
         <a class="btn btn-primary" href="/contact/">Contact us</a>
         <a class="btn btn-ghost" href="/work/">Back to Our Work</a>
       </div>

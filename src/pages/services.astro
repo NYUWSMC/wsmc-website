@@ -19,7 +19,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
     <ul class="split-list">
       {
         services.map((s) => (
-          <li>
+          <li data-reveal>
             <div class="stack" style="--stack-gap: 0.5rem;">
               <h2 style="font-family: var(--font-sans); font-size: var(--text-lg); font-weight: 600;">
                 {s.data.title}
@@ -37,12 +37,12 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
 
   <section class="section section-surface">
     <div class="wrap" style="display: grid; gap: var(--space-4); max-width: 36rem;">
-      <h2 style="font-size: var(--text-xl);">Not sure which applies?</h2>
-      <p class="lede">
+      <h2 style="font-size: var(--text-xl);" data-reveal>Not sure which applies?</h2>
+      <p class="lede" data-reveal>
         Describe the decision you need to make, the people data you have, and any constraints on
         timeline or confidentiality. We will map it to a scoped engagement.
       </p>
-      <div>
+      <div data-reveal>
         <a class="btn btn-primary" href="/contact/">Contact us</a>
       </div>
     </div>

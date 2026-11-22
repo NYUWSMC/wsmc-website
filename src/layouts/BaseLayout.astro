@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { ClientRouter, fade } from 'astro:transitions';
 import '../styles/global.css';
 
 interface Props {
@@ -23,11 +24,12 @@ const pageTitle = title === 'Home' ? 'WSMC · Washington Square Management Consu
     <link rel="icon" href="/favicon.ico" />
     <title>{pageTitle}</title>
     <script is:inline src="/theme-init.js"></script>
+    <ClientRouter />
   </head>
   <body style="display: flex; flex-direction: column;">
     <a class="skip-link" href="#main">Skip to content</a>
     <Header />
-    <main id="main" style="flex: 1;">
+    <main id="main" style="flex: 1;" transition:animate={fade({ duration: '320ms' })}>
       <slot />
     </main>
     <Footer />

@@ -15,18 +15,18 @@ const { Content } = await render(page);
   />
 
   <section class="section-tight wrap" style="padding-top: 0;">
-    <div class="prose">
+    <div class="prose" data-reveal-group>
       <Content />
     </div>
   </section>
 
   <section class="section section-surface">
     <div class="wrap" style="display: grid; gap: var(--space-4); max-width: 36rem;">
-      <h2 style="font-size: var(--text-xl);">Questions before you apply</h2>
-      <p class="lede">
+      <h2 style="font-size: var(--text-xl);" data-reveal>Questions before you apply</h2>
+      <p class="lede" data-reveal>
         Reach out to one of the board members, or click below to send us an email.
       </p>
-      <div>
+      <div data-reveal>
         <a class="btn btn-primary" href="/contact/">Contact us</a>
       </div>
     </div>

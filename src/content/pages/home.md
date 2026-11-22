@@ -1,9 +1,8 @@
 ---
 title: Home
 description: Washington Square Management Consulting — NYU I-O master’s student-led consulting across selection, assessment, surveys, L&D, workforce transformation and related talent work.
-eyebrow: NYU Industrial-Organizational Psychology
-headline: Instruments organizations use to hire, develop and understand their people.
-lede: "Washington Square Management Consulting is the master’s student-led consulting firm of NYU’s I-O Psychology program. Our work spans the full range of industrial-organizational consulting: selection and assessment, surveys and employee listening, competency modeling, learning and development, workforce planning and transformation, culture and change management, and any other talent challenges that require strategy and methodological rigor."
+headline: NYU Washington Square Management Consulting
+lede: WSMC is a student-led consulting organization within NYU’s Master’s program in Industrial-Organizational Psychology.
 primaryCta:
   label: Contact us
   href: /contact/
